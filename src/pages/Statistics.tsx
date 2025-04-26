@@ -3,7 +3,8 @@ import { getTrainingsData } from "../services/TrainingService";
 import { Training } from "../types";
 import { BarChartComponent, DonutChartComponent } from "../components/ActivityChart";
 import _ from "lodash";
-import Grid from "@mui/material/Grid";
+ import { GridLegacy as Grid } from '@mui/material';
+
 import {
   RadialBarChart,
   RadialBar,
