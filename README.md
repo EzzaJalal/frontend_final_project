@@ -50,7 +50,7 @@ The project uses several third-party libraries to enhance functionality and UI e
 
 - Export customer data to CSV (excluding unnecessary columns)
 - Calendar view showing all trainings
-- App deployed to [ https://ezzajalal.github.io/frontend_final_project/]
+- App deployed to https://ezzajalal.github.io/frontend_final_project/
 
 ### Part 4 (✅ Completed)
 
