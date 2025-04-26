@@ -1,0 +1,327 @@
+/* =======================
+   Root Variables
+======================= */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --background-color: #f8f9fa;
+  --text-color: #333;
+  --accent-color: #28a745;
+  --danger-color: #dc3545;
+  --border-radius: 8px;
+  --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  --transition: all 0.3s ease;
+  --gradient-overlay: linear-gradient(135deg, rgba(0, 123, 255, 0.7), rgba(40, 167, 69, 0.7));
+}
+
+/* =======================
+   Base Styles
+======================= */
+body, #root {
+  margin: 0;
+  padding: 0;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  font-family: 'Roboto', system-ui, Avenir, Helvetica, Arial, sans-serif;
+  min-height: 100vh;
+}
+
+/* =======================
+   Navigation
+======================= */
+.nav-container {
+  background-color: var(--primary-color);
+  padding: 10px 20px;
+  box-shadow: var(--box-shadow);
+  position: relative;
+}
+
+.nav-desktop {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.nav-desktop a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  position: relative;
+  transition: var(--transition);
+}
+
+.nav-desktop a::after {
+  content: "";
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: 5px;
+  left: 50%;
+  background-color: #fff;
+  transition: width 0.3s ease, left 0.3s ease;
+}
+
+.nav-desktop a:hover::after,
+.nav-desktop a.active::after {
+  width: 100%;
+  left: 0;
+}
+
+.nav-mobile {
+  display: none;
+}
+
+.nav-mobile select {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: var(--border-radius);
+  border: none;
+  background-color: #fff;
+  color: var(--text-color);
+  box-shadow: var(--box-shadow);
+  appearance: none;
+  background-image: url('data:image/svg+xml;utf8,<svg fill="black" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+}
+
+/* =======================
+   Buttons
+======================= */
+button,
+.MuiButton-root {
+  border-radius: var(--border-radius) !important;
+  padding: 8px 16px !important;
+  font-weight: 500 !important;
+  transition: var(--transition) !important;
+  box-shadow: var(--box-shadow) !important;
+  animation: buttonPulse 2s infinite;
+}
+
+button:hover,
+.MuiButton-root:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+button.primary,
+.MuiButton-containedPrimary {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+}
+
+button.secondary,
+.MuiButton-containedSecondary {
+  background-color: var(--secondary-color) !important;
+  color: #fff !important;
+}
+
+/* =======================
+   Animations
+======================= */
+@keyframes fadeSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes buttonPulse {
+  0% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+  50% {
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+  }
+  100% {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* =======================
+   Tables (AG Grid)
+======================= */
+.ag-theme-quartz {
+  --ag-header-background-color: #e9ecef;
+  --ag-row-hover-background-color: #e6f0ff;
+  --ag-font-size: 14px;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--box-shadow);
+}
+
+.ag-header-cell {
+  font-weight: 600 !important;
+  color: var(--text-color) !important;
+}
+
+.ag-row {
+  transition: var(--transition);
+}
+
+.ag-row:hover {
+  background-color: var(--ag-row-hover-background-color) !important;
+}
+
+.ag-header-cell-text,
+.ag-cell {
+  font-size: 14px;
+}
+
+/* =======================
+   Action Icons
+======================= */
+.action-icon {
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: var(--transition);
+  margin: 0 8px;
+}
+
+.action-icon.edit {
+  color: var(--primary-color);
+}
+
+.action-icon.delete {
+  color: var(--danger-color);
+}
+
+.action-icon:hover {
+  transform: scale(1.2);
+}
+
+/* =======================
+   Forms (Material UI)
+======================= */
+
+/* Dialog container */
+.MuiDialog-paper {
+  border-radius: var(--border-radius) !important;
+  box-shadow: var(--box-shadow) !important;
+  padding: 24px !important;
+  background-color: #fff;
+  animation: slideIn 0.5s ease;
+}
+
+/* Dialog title styling */
+.MuiDialogTitle-root {
+  font-size: 1.5rem !important;
+  font-weight: 600 !important;
+  color: var(--text-color) !important;
+  margin-bottom: 16px !important;
+}
+
+/* Dialog actions row */
+.MuiDialogActions-root {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* TextField wrapper */
+.MuiTextField-root {
+  margin-bottom: 20px !important;
+  width: 100% !important;
+}
+
+/* Only target the Outlined variant now */
+.MuiOutlinedInput-root {
+  border-radius: var(--border-radius) !important;
+  background-color: #f9f9f9 !important;
+  transition: var(--transition) !important;
+}
+
+/* Outline border */
+.MuiOutlinedInput-notchedOutline {
+  border: 1px solid #ced4da !important;
+}
+
+/* Hover state */
+.MuiOutlinedInput-root:hover .MuiOutlinedInput-notchedOutline {
+  border-color: var(--primary-color) !important;
+}
+
+/* Focus state */
+.MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline {
+  border-color: var(--primary-color) !important;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.1) !important;
+}
+
+
+/* =======================
+   Calendar
+======================= */
+.rbc-calendar {
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 16px;
+  background-color: #fff;
+}
+
+/* =======================
+   Charts (Recharts)
+======================= */
+.recharts-wrapper {
+  background-color: #fff;
+  border-radius: var(--border-radius);
+  padding: 16px;
+  box-shadow: var(--box-shadow);
+}
+
+/* =======================
+   Snackbar
+======================= */
+.MuiSnackbarContent-root {
+  border-radius: var(--border-radius) !important;
+  background-color: var(--accent-color) !important;
+  color: #fff !important;
+  box-shadow: var(--box-shadow) !important;
+}
+
+/* =======================
+   Responsive Styles
+======================= */
+@media (max-width: 768px) {
+  .nav-desktop {
+    display: none;
+  }
+  .nav-mobile {
+    display: block;
+  }
+  .MuiGrid-item {
+    padding: 8px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .home h1 {
+    font-size: 2rem !important;
+  }
+  .MuiDialog-paper {
+    margin: 16px !important;
+    width: calc(100% - 32px) !important;
+  }
+  .ag-header-cell-text,
+  .ag-cell {
+    font-size: 12px !important;
+  }
+}
