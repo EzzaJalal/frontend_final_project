@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { Calendar, dateFnsLocalizer, Event } from "react-big-calendar";
 import { format, parse, startOfWeek, getDay } from "date-fns";
-import {enUS} from "date-fns/locale/en-US";
+import { enUS } from "date-fns/locale/en-US";
 import "react-big-calendar/lib/css/react-big-calendar.css";
 import { getTrainingsData } from "../services/TrainingService";
 import { Training } from "../types";
 import dayjs from "dayjs";
 
-// Setup date-fns localizer for react-big-calendar
 const locales = { "en-US": enUS };
 const localizer = dateFnsLocalizer({
   format,
@@ -17,7 +16,6 @@ const localizer = dateFnsLocalizer({
   locales,
 });
 
-// Define the event type for react-big-calendar
 interface CalendarEvent extends Event {
   title: string;
   start: Date;
@@ -31,7 +29,6 @@ export default function TrainingCalendar() {
   const [currentDate, setCurrentDate] = useState(new Date());
   const [view, setView] = useState<"month" | "week" | "day">("week");
 
-  // Fetch trainings from API
   useEffect(() => {
     (async () => {
       try {
@@ -44,15 +41,17 @@ export default function TrainingCalendar() {
     })();
   }, []);
 
-  // Transform trainings into calendar events
   useEffect(() => {
     const calendarEvents: CalendarEvent[] = trainings.map((training) => {
       const startDate = new Date(training.date);
       const endDate = new Date(startDate.getTime() + training.duration * 60000);
-      const customerName =
-        typeof training.customer === "string"
-          ? "N/A"
-          : `${training.customer.firstname} ${training.customer.lastname}`;
+
+      let customerName = "N/A";
+      if (training.customer && typeof training.customer !== "string") {
+        const { firstname, lastname } = training.customer;
+        customerName = `${firstname ?? ""} ${lastname ?? ""}`.trim();
+      }
+
       return {
         title: `${training.activity} / ${customerName}`,
         start: startDate,
@@ -75,7 +74,6 @@ export default function TrainingCalendar() {
         onNavigate={(newDate) => setCurrentDate(newDate)}
         view={view}
         onView={(newView) => setView(newView as "month" | "week" | "day")}
-        // Always render events in the time grid, not in the all-day row
         allDayAccessor={() => false}
         showMultiDayTimes
         eventPropGetter={() => ({
@@ -95,6 +93,7 @@ export default function TrainingCalendar() {
     </div>
   );
 }
+
 
 
 
